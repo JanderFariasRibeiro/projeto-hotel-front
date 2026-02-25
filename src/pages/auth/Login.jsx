@@ -1,16 +1,18 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import { LuUser, LuLock, LuBuilding } from "react-icons/lu";
+import { LuUser, LuLock, LuBuilding, LuEye, LuEyeOff } from "react-icons/lu";
 
 const Login = () => {
     // Estados de Carregamento (Skeleton)
-    const [isLoadingSkeleton, setisLoadingSkeleton] = useState(true); // (Inicial)
-    const [isLoggingIn, setIsLoggingIn] = useState(false); //(API)
+    const [isLoadingSkeleton, setisLoadingSkeleton] = useState(true); 
+    const [isLoggingIn, setIsLoggingIn] = useState(false); 
 
     // Estados dos Dados (para o Back-end)
     const [usuario, setUsuario] = useState("");
     const [senha, setSenha] = useState("");
     const [erroMessage, setErroMessage] = useState("");
+    
+    const [mostrarSenha, setMostrarSenha] = useState(false);
 
     const navigate = useNavigate();
 
@@ -38,7 +40,6 @@ const Login = () => {
             setErroMessage("Preencha todos os campos.");
         }
     };
-
 
     // Animaçoes CSS
     const animacoesCSS = `
@@ -68,7 +69,7 @@ const Login = () => {
         return (
             <div className="min-h-screen bg-[#0b4263] flex flex-col items-center justify-center relative overflow-hidden">
                 <style>{animacoesCSS}</style>
-                <div className="bg-orange-500 p-5 rounded-2xl text-white mb-8 z-10 shadow-lg animate-pulse">
+                <div className="bg-[#F59F0A] p-5 rounded-2xl text-white mb-8 z-10 shadow-lg animate-pulse">
                     <LuBuilding size={64} />
                 </div>
                 <div className="w-64 h-1.5 bg-white/20 rounded-full overflow-hidden z-10">
@@ -81,9 +82,9 @@ const Login = () => {
     // Skeleton de Login
     if (isLoggingIn) {
         return (
-            <div className="min-h-screen bg-gradient-to-tr from-[#0b4263] to-orange-400 flex flex-col items-center justify-center relative overflow-hidden">
+            <div className="min-h-screen bg-gradient-to-tr from-[#0b4263] to-[#F59F0A] flex flex-col items-center justify-center relative overflow-hidden">
                 <style>{animacoesCSS}</style>
-                <div className="bg-white p-5 rounded-2xl text-orange-500 mb-6 z-10 shadow-lg animate-pulse">
+                <div className="bg-white p-5 rounded-2xl text-[#F59F0A] mb-6 z-10 shadow-lg animate-pulse">
                     <LuBuilding size={64} />
                 </div>
                 <h2 className="text-white text-xl font-bold mb-8 animate-pulse drop-shadow-md">Autenticando...</h2>
@@ -102,7 +103,7 @@ const Login = () => {
             <div className="bg-white p-10 rounded-3xl shadow-2xl max-w-md w-full z-10 relative">
 
                 <div className="flex flex-col items-center mb-8">
-                    <div className="bg-orange-500 p-4 rounded-2xl text-white mb-4 shadow-md">
+                    <div className="bg-[#F59F0A] p-4 rounded-2xl text-white mb-4 shadow-md">
                         <LuBuilding size={40} />
                     </div>
                     <h1 className="text-3xl font-extrabold text-[#0b4263]">Tech Hotel</h1>
@@ -118,7 +119,7 @@ const Login = () => {
                 <form onSubmit={handleLogin} className="flex flex-col gap-5">
 
                     <div className="relative flex items-center group">
-                        <div className="absolute left-0 top-0 bottom-0 w-12 flex items-center justify-center text-gray-400 border-r border-transparent group-focus-within:text-orange-500 transition-colors">
+                        <div className="absolute left-0 top-0 bottom-0 w-12 flex items-center justify-center text-gray-400 border-r border-transparent group-focus-within:text-[#F59F0A] transition-colors">
                             <LuUser size={20} />
                         </div>
                         <input
@@ -126,28 +127,35 @@ const Login = () => {
                             value={usuario}
                             onChange={(e) => setUsuario(e.target.value)}
                             placeholder="Usuário"
-                            className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 focus:bg-white transition-all"
+                            className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-[#F59F0A] focus:ring-2 focus:ring-[#F59F0A]/20 focus:bg-white transition-all"
                             required
                         />
                     </div>
 
                     <div className="relative flex items-center group">
-                        <div className="absolute left-0 top-0 bottom-0 w-12 flex items-center justify-center text-gray-400 border-r border-transparent group-focus-within:text-orange-500 transition-colors">
+                        <div className="absolute left-0 top-0 bottom-0 w-12 flex items-center justify-center text-gray-400 border-r border-transparent group-focus-within:text-[#F59F0A] transition-colors">
                             <LuLock size={20} />
                         </div>
                         <input
-                            type="password"
+                            type={mostrarSenha ? "text" : "password"}
                             value={senha}
                             onChange={(e) => setSenha(e.target.value)}
                             placeholder="Senha"
-                            className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 focus:bg-white transition-all"
+                            className="w-full pl-12 pr-12 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-[#F59F0A] focus:ring-2 focus:ring-[#F59F0A]/20 focus:bg-white transition-all"
                             required
                         />
+                        <button
+                            type="button"
+                            onClick={() => setMostrarSenha(!mostrarSenha)}
+                            className="absolute right-0 top-0 bottom-0 w-12 flex items-center justify-center text-gray-400 hover:text-[#0b4263] transition-colors cursor-pointer"
+                        >
+                            {mostrarSenha ? <LuEyeOff size={20} /> : <LuEye size={20} />}
+                        </button>
                     </div>
 
                     <button
                         type="submit"
-                        className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3.5 rounded-xl mt-2 transition-all shadow-lg hover:shadow-orange-500/30 transform hover:-translate-y-0.5 cursor-pointer"
+                        className="w-full bg-[#F59F0A] hover:bg-[#d98b09] text-white font-bold py-3.5 rounded-xl mt-2 transition-all shadow-lg hover:shadow-[#F59F0A]/30 transform hover:-translate-y-0.5 cursor-pointer"
                     >
                         Entrar
                     </button>
@@ -155,9 +163,9 @@ const Login = () => {
 
                 <div className="mt-8 text-center text-sm text-gray-500 flex flex-col gap-3">
                     <p>
-                        Recuperar: <a href="#" className="text-[#0b4263] hover:text-orange-500 font-semibold transition-colors">Usuário</a> - <a href="#" className="text-[#0b4263] hover:text-orange-500 font-semibold transition-colors">Senha</a>
+                        Recuperar: <a href="#" className="text-[#0b4263] hover:text-[#F59F0A] font-semibold transition-colors">Usuário</a> - <a href="#" className="text-[#0b4263] hover:text-[#F59F0A] font-semibold transition-colors">Senha</a>
                     </p>
-                    <a href="#" className="text-[#0b4263] hover:text-orange-500 transition-colors mt-2">
+                    <a href="#" className="text-[#0b4263] hover:text-[#F59F0A] transition-colors mt-2">
                         Visite nosso website para maiores informações
                     </a>
                 </div>

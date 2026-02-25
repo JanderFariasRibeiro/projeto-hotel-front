@@ -55,7 +55,7 @@ const Menu = () => {
                     {/* header do menu */}
                     <button
                         onClick={() => setIsOpen(!isOpen)}
-                        className="group absolute -right-3 top-20 bg-orange-500 text-white rounded-full p-1.5 shadow-md flex items-center justify-center hover:bg-orange-600 transition-colors z-50 cursor-pointer"
+                        className="group absolute -right-3 top-20 bg-[#F59F0A] text-white rounded-full p-1.5 shadow-md flex items-center justify-center hover:bg-[#d98b09] transition-colors z-50 cursor-pointer"
                     >
                         {isOpen ? <LuChevronLeft size={16} /> : <LuChevronRight size={16} />}
 
@@ -69,7 +69,7 @@ const Menu = () => {
                 </div>
 
                 <div className="p-6 flex items-center gap-3 overflow-hidden border-b border-white/10">
-                    <div className="bg-orange-500 p-2 rounded-xl text-white flex-shrink-0">
+                    <div className="bg-[#F59F0A] p-2 rounded-xl text-white flex-shrink-0">
                         <LuBuilding size={24} />
 
                     </div>
