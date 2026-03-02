@@ -1,6 +1,6 @@
 const Card = ({ titulo, info, children }) => {
     return (
-        <section className="bg-white rounded-3xl border border-stone-300 p-4 h-full flex flex-col">
+        <section className="bg-white rounded-3xl   border border-stone-300 p-4 h-full flex flex-col">
             
             <header className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-bold text-gray-800">
