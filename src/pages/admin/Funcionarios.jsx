@@ -294,7 +294,7 @@ export default function Funcionarios() {
       </Drawer>
 
       {isModalDeleteOpen && funcionarioParaDeletar && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fade-in">
+        <div className="fixed inset-0 z-'60 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fade-in">
           <div className="bg-white rounded-2xl shadow-xl w-full max-w-sm p-6 text-center transform scale-100 animate-fade-in-up">
             <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4 text-red-500">
               <FiAlertTriangle size={32} />
