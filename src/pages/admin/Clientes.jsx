@@ -1,12 +1,10 @@
 import { useState } from "react";
-import { FiX, FiAlertTriangle, FiMail, FiPhone, FiMapPin, FiMoreHorizontal } from "react-icons/fi";
+import { FiX, FiAlertTriangle, FiMail, FiPhone, FiMapPin, FiMoreVertical } from "react-icons/fi";
 import { AiOutlineCloudUpload, AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import ActionBar from "../../components/ActionBar"; 
 import Drawer from "../../components/Drawer";
 
-// ==========================================
 // MOCK DE DADOS INICIAIS
-// ==========================================
 const clientesIniciais = [
   { id: 1, name: "Carlos Eduardo Mendes", docType: "CPF", document: "123.456.789-00", email: "carlos@email.com", phone: "(11) 98765-4321", city: "São Paulo, SP" },
   { id: 2, name: "Fernanda Oliveira", docType: "CPF", document: "987.654.321-00", email: "fernanda@email.com", phone: "(21) 98765-1234", city: "Rio de Janeiro, RJ" },
@@ -35,9 +33,7 @@ export default function Clientes() {
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
   const [clienteParaDeletar, setClienteParaDeletar] = useState(null);
 
-  // ==========================================
   // FUNÇÕES AUXILIARES
-  // ==========================================
   const getIniciais = (nome) => {
     const pedacos = nome.trim().split(" ");
     if (pedacos.length >= 2) {
@@ -46,9 +42,7 @@ export default function Clientes() {
     return nome.substring(0, 2).toUpperCase();
   };
 
-  // ==========================================
   // AÇÕES DA GAVETA
-  // ==========================================
   const abrirGavetaNovo = () => {
     setModoDrawer("CRIAR");
     setIdEditando(null);
@@ -107,9 +101,7 @@ export default function Clientes() {
     setIsDrawerOpen(false);
   };
 
-  // ==========================================
   // AÇÕES DE EXCLUSÃO
-  // ==========================================
   const abrirModalDeletar = () => {
     setClienteParaDeletar(listaClientes.find(c => c.id === idEditando));
     setIsModalDeleteOpen(true);
@@ -141,33 +133,22 @@ export default function Clientes() {
         <div className="overflow-x-auto w-full rounded-2xl">
           <div className="min-w-[900px]">
             
-            {/* Cabeçalho da Tabela - Invertemos a ordem no grid-cols! */}
-            <div className="grid grid-cols-[auto_2.5fr_1.5fr_2fr_1.5fr] gap-4 p-4 bg-[#fafafa] border-b border-gray-200 text-sm font-medium text-gray-500">
-              <div className="w-12 text-center"></div> {/* Espaço dos 3 pontinhos no início */}
+            {/* Cabeçalho da Tabela */}
+            <div className="grid grid-cols-[2.5fr_1.5fr_2fr_1.5fr_auto] gap-4 p-4 bg-[#fafafa] border-b border-gray-200 text-sm font-medium text-gray-500">
               <div>Nome</div>
               <div>Documento</div>
               <div>Contato</div>
               <div>Cidade</div>
+              <div className="w-8"></div> 
             </div>
 
             {/* Linhas da Tabela */}
             <div className="flex flex-col divide-y divide-gray-100">
               {clientesFiltrados.length > 0 ? (
                 clientesFiltrados.map((cliente) => (
-                  <div key={cliente.id} className="grid grid-cols-[auto_2.5fr_1.5fr_2fr_1.5fr] gap-4 p-4 items-center hover:bg-gray-50 transition-colors">
+                  <div key={cliente.id} className="grid grid-cols-[2.5fr_1.5fr_2fr_1.5fr_auto] gap-4 p-4 items-center hover:bg-gray-50 transition-colors">
                     
-                    {/* Coluna 1: Ações (3 pontinhos agora são os primeiros da linha!) */}
-                    <div className="flex justify-center">
-                      <button 
-                        onClick={() => abrirGavetaDetalhes(cliente)}
-                        className="p-2 text-gray-400 hover:text-[#0b4263] hover:bg-gray-200 rounded-lg transition-colors cursor-pointer shrink-0"
-                        title="Detalhes do Cliente"
-                      >
-                        <FiMoreHorizontal size={20} />
-                      </button>
-                    </div>
-
-                    {/* Coluna 2: Avatar e Nome */}
+                    {/* Coluna 1: Avatar e Nome */}
                     <div className="flex items-center gap-4 truncate">
                       <div className="w-10 h-10 rounded-full bg-blue-50 text-[#0b4263] flex items-center justify-center font-bold text-sm shrink-0">
                         {getIniciais(cliente.name)}
@@ -178,12 +159,12 @@ export default function Clientes() {
                       </div>
                     </div>
 
-                    {/* Coluna 3: Documento */}
+                    {/* Coluna 2: Documento */}
                     <div className="text-sm text-gray-600 truncate">
                       {cliente.document}
                     </div>
 
-                    {/* Coluna 4: Contato */}
+                    {/* Coluna 3: Contato */}
                     <div className="flex flex-col gap-1 text-sm text-gray-600 truncate">
                       <div className="flex items-center gap-2 truncate">
                         <FiMail className="text-gray-400 shrink-0" />
@@ -195,10 +176,21 @@ export default function Clientes() {
                       </div>
                     </div>
 
-                    {/* Coluna 5: Cidade */}
+                    {/* Coluna 4: Cidade */}
                     <div className="flex items-center gap-2 text-sm text-gray-600 truncate">
                       <FiMapPin className="text-gray-400 shrink-0" />
                       <span className="truncate">{cliente.city}</span>
+                    </div>
+
+                    {/* Coluna 5: Ações */}
+                    <div className="flex justify-end">
+                      <button 
+                        onClick={() => abrirGavetaDetalhes(cliente)}
+                        className="p-2 text-gray-400 hover:text-[#0b4263] hover:bg-gray-200 rounded-lg transition-colors cursor-pointer shrink-0"
+                        title="Detalhes do Cliente"
+                      >
+                        <FiMoreVertical size={20} />
+                      </button>
                     </div>
 
                   </div>
