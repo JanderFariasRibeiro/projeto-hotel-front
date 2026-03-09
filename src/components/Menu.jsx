@@ -37,6 +37,7 @@ const Menu = () => {
         { to: "/admin/reservas", icon: <LuCalendarDays size={20} />, label: "Reservas" },
         { to: "/admin/pagamentos", icon: <LuCreditCard size={20} />, label: "Pagamentos" },
         { to: "/admin/funcionarios", icon: <LuUserCog size={20} />, label: "Funcionários" },
+        { to: "/admin/cargos", icon: <LuUserCog size={20} />, label: "Cargos" },
     ];
 
     const abrirModalSair = () => {
