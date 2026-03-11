@@ -1,17 +1,18 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { LuUser, LuLock, LuBuilding, LuEye, LuEyeOff } from "react-icons/lu";
+import { AXIOS } from './../../services/index';
 
 const Login = () => {
     // Estados de Carregamento (Skeleton)
-    const [isLoadingSkeleton, setisLoadingSkeleton] = useState(true); 
-    const [isLoggingIn, setIsLoggingIn] = useState(false); 
+    const [isLoadingSkeleton, setisLoadingSkeleton] = useState(true);
+    const [isLoggingIn, setIsLoggingIn] = useState(false);
 
     // Estados dos Dados (para o Back-end)
     const [usuario, setUsuario] = useState("");
     const [senha, setSenha] = useState("");
     const [erroMessage, setErroMessage] = useState("");
-    
+
     const [mostrarSenha, setMostrarSenha] = useState(false);
 
     const navigate = useNavigate();
@@ -25,20 +26,27 @@ const Login = () => {
     }, []);
 
     // Função que será conectada à futura API
-    const handleLogin = (e) => {
+    /**
+     * função de logar
+     * @param string usuario 
+     * @param string senha 
+     */
+    const handleLogin = async (e) => {
         e.preventDefault();
         setErroMessage("");
 
-        //(simulação) para autenticação se estao preenchidos.
-        if (usuario && senha) {
-            setIsLoggingIn(true);
-            // Simula o tempo que a API demora para validar (2.5 segundos)
-            setTimeout(() => {
-                navigate("/admin");
-            }, 2500);
-        } else {
-            setErroMessage("Preencha todos os campos.");
+        const request = await AXIOS.post("/logar", {
+            email: usuario,
+            senha
+        })
+
+        if (!request.data.token) {
+            alert(`Alerta: ${request.data.mensagem}`);
+            return
         }
+
+        sessionStorage.setItem("token", request.data.token)
+        navigate("/admin");
     };
 
     // Animaçoes CSS
