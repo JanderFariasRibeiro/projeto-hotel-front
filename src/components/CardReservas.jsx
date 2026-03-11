@@ -2,8 +2,12 @@ import { GoCalendar } from "react-icons/go";
 import { MdOutlineBed } from "react-icons/md";
 
 const CardReservas = ({ Detalhes, Desconto, Checkout, Checkin, foto, nome, email, status, quarto, dados, valor, forma, layout, className = "" }) => {
+  const statusNormal = status?.toLowerCase();
   return (
-    <section className=" overflow-y-auto bg-white  border border-stone-200 ml-6 mr-6 ">
+    <section>
+      <div >
+
+      </div>
       <div className="hover:bg-neutral-200/55
         items-center  p-6 rounded-2xl  flex gap-6 ">
         <div className={` ${layout === "reserva" ? "  h-13 w-13 rounded-full" : "  h-15 w-14 "}  flex justify-center items-center  bg-gray-300 rounded-2xl`}>
@@ -36,8 +40,8 @@ const CardReservas = ({ Detalhes, Desconto, Checkout, Checkin, foto, nome, email
               <div className="flex  items-center gap-3">
                 <h2>{nome}</h2>
                 <span
-                  className={`px-3 py-1 rounded-2xl text-sm  ${status === "pago" ? "bg-green-200 text-green-700" : "bg-red-200 text-red-700"}`}>
-                  {status === "pago" ? "pago" : "pendente"}
+                  className={`px-3 py-1 rounded-2xl text-sm  ${statusNormal === "pago" ? "bg-green-200 text-green-700" : "bg-red-200 text-red-700"}`}>
+                  {statusNormal === "pago" ? "Pago" : "Pendente"}
                 </span>
               </div>
               <div className="flex relative gap-4 mt-1">
@@ -54,6 +58,7 @@ const CardReservas = ({ Detalhes, Desconto, Checkout, Checkin, foto, nome, email
           )}
          
         </div>
+        {/* reservas */}
         <div className="ml-auto flex flex-col items-end gap-1">
           {layout === "reserva" ? (
             <div className=" flex gap-6 items-center">
@@ -63,10 +68,10 @@ const CardReservas = ({ Detalhes, Desconto, Checkout, Checkin, foto, nome, email
               </div>
               <div>
 
-                <span className={` ${status === "pago" ? "bg-green-100/60 px-2 py-1 text-center  text-green-600 rounded-xl " : "bg-red-200/60 text-red-700 px-2 py-1 text-center rounded-xl "
+                <span className={` ${statusNormal === "pago" ? "bg-green-100/60 px-2 py-1 text-center  text-green-600 rounded-xl " : "bg-red-200/60 text-red-700 px-2 py-1 text-center rounded-xl "
                   }`}
                 >
-                  {status === "Pago" ? "Pago" : "Pendente"}
+                  {statusNormal  === "pago" ? "Pago" : "Pendente"}
                 </span>
               </div>
               <div className="">

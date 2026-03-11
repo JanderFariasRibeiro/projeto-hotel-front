@@ -1,7 +1,7 @@
 import { FaRegUser } from "react-icons/fa";
-import Card from "../../components/Card";
 import CardReservas from "../../components/CardReservas";
 import { IoEllipsisHorizontalSharp } from "react-icons/io5";
+
 
 const Reservas = () => {
     const reservas =[{
@@ -33,7 +33,7 @@ const Reservas = () => {
           id: 3,
       nome: "Carlos Eduardo Mendes",
       email: "email@.com",
-      status: "Pendente",
+      status: "pago",
       quarto: "Suíte Master 101",
       dados: "01 fev - 05 fev",
       valor: "R$ 1.500,00",
@@ -57,7 +57,7 @@ const Reservas = () => {
           id: 1,
       nome: "Carlos Eduardo Mendes",
       email: "email@.com",
-      status: "Pendente",
+      status: "pago",
       quarto: "Suíte Master 101",
       dados: "01 fev - 05 fev",
       valor: "R$ 1.500,00",
@@ -80,9 +80,12 @@ const Reservas = () => {
     }]
     return (
      <section >
- 
+       
       {
-        reservas.map((r)=>( <CardReservas
+        
+        reservas.map((r)=>( 
+           
+           <CardReservas
             key = {r.id}
             foto={<FaRegUser className="text-neutral-500 size-6 " />}
             layout="reserva"
@@ -104,4 +107,4 @@ const Reservas = () => {
     );
 }
  
-export default Reservas;''
+export default Reservas;
