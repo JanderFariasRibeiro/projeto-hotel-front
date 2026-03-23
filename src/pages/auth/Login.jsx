@@ -41,7 +41,7 @@ const Login = () => {
         })
 
         if (!request.data.token) {
-            alert(`Alerta: ${request.data.mensagem}`);
+            alert(`-${request.data.mensagem}`);
             return
         }
 
