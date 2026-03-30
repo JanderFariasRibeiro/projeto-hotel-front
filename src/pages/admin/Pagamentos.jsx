@@ -44,7 +44,7 @@ export default function Pagamentos() {
 
         <div>
           <h1 className="text-2xl font-bold">Pagamentos</h1>
-          <p className="text-gray-500">Controle financeiro das reservas</p>
+          <p className="text-gray-500">Controle financeiro das reservas </p>
         </div>
 
         <div className="relative w-[320px]">
