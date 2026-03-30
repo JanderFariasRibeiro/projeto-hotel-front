@@ -102,7 +102,10 @@ const Menu = () => {
                 
                 {/* area de perfil logado */}
                 <div className="p-4 border-t border-white/10 flex items-center justify-between relative">
-                    <div className="flex items-center gap-3 overflow-hidden">
+                    <button 
+                        onClick={() => navigate("/admin/perfil")}
+                        className="flex items-center gap-3 overflow-hidden hover:bg-white/5 rounded-lg p-2 -m-2 transition-colors cursor-pointer flex-1"
+                    >
                         <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center font-bold text-sm flex-shrink-0">
                             {usuarioLogado.avatar ? (
                                 <img src={usuarioLogado.avatar} alt="Perfil" className="w-full h-full rounded-full object-cover" />
@@ -112,12 +115,12 @@ const Menu = () => {
                         </div>
 
                         {isOpen && (
-                            <div className="flex flex-col whitespace-nowrap">
+                            <div className="flex flex-col whitespace-nowrap text-left">
                                 <span className="font-medium text-sm">{usuarioLogado.nome}</span>
                                 <span className="text-xs text-white/70">{usuarioLogado.cargo}</span>
                             </div>
                         )}
-                    </div>
+                    </button>
 
                     {isOpen && (
                         <div className="relative group flex items-center">
