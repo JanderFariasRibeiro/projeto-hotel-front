@@ -40,7 +40,7 @@ export default function ActionBar({
           <div className="relative">
             <button 
               onClick={() => setMostrarFiltro(!mostrarFiltro)}
-              className="flex items-center justify-center w-11 h-11 bg-white border border-gray-300 text-gray-600 rounded-lg hover:bg-yellow-500 hover:text-[#0b4263] transition-colors"
+              className="flex items-center justify-center w-11 h-11 bg-white border border-gray-300 text-gray-600 rounded-lg hover:bg-yellow-500 hover:text-[#0b4263] transition-colors cursor-pointer"
               title="Filtrar"
             >
               <FiFilter size={20} />
@@ -88,14 +88,16 @@ export default function ActionBar({
         )}
       </div>
 
-      {/*  Botão de Adicionar (Azul Escuro) */}
-      <button 
-        onClick={onAdicionar}
-        className="w-full md:w-auto flex items-center justify-center gap-2 px-5 py-2.5 bg-[#0b4263] hover:bg-[#08334d] text-white font-medium rounded-lg transition-colors shadow-sm cursor-pointer"
-      >
-        <FiPlus size={20} />
-        <span>{textoBotao}</span>
-      </button>
+      {/*O botão só é renderizado se 'textoBotao' existir */}
+      {textoBotao && (
+        <button 
+          onClick={onAdicionar}
+          className="w-full md:w-auto flex items-center justify-center gap-2 px-5 py-2.5 bg-[#0b4263] hover:bg-[#08334d] text-white font-medium rounded-lg transition-colors shadow-sm cursor-pointer shrink-0"
+        >
+          <FiPlus size={20} />
+          <span>{textoBotao}</span>
+        </button>
+      )}
 
     </div>
   );
