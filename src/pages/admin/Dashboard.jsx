@@ -14,7 +14,7 @@ const Dashboard = () => {
         {
             id: 1,
             nome: "Carlos Eduardo Mendes",
-            status: "pedente",
+            status: "Pendente",
             quarto: "Suíte Master 101",
             dados: "01 fev - 05 fev",
             valor: "R$ 1.500,00",
@@ -22,7 +22,7 @@ const Dashboard = () => {
         }, {
             id: 2,
             nome: "Carlos Eduardo Mendes",
-            status: "pago",
+            status: "Pago",
             quarto: "Suíte Master 101",
             dados: "10 fev - 15 fev",
             valor: "R$ 2.500,00",
@@ -30,7 +30,7 @@ const Dashboard = () => {
         }, {
             id: 3,
             nome: "Fernanda oliveira",
-            status: "pago",
+            status: "Pago",
             quarto: "suíte premium 105",
             dados: "20 fev - 25 fev",
             valor: "R$ 3.000,00",
