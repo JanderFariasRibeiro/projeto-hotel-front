@@ -8,6 +8,7 @@ import Quartos from "../pages/admin/Quartos";
 import Clientes from "../pages/admin/Clientes";
 import Reservas from "../pages/admin/Reservas";
 import Pagamentos from "../pages/admin/Pagamentos";
+import Perfil from "../pages/admin/Perfil";
 
 const Rotas = () => {
     return (
@@ -22,6 +23,7 @@ const Rotas = () => {
                     <Route path="pagamentos" element={<Pagamentos />} />
                     <Route path="funcionarios" element={<Funcionarios />} />
                     <Route path="cargos" element={<Cargos />} />
+                    <Route path="perfil" element={<Perfil />} />
                 </Route>
             </Routes>
         </BrowserRouter>

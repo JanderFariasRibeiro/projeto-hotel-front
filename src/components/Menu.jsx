@@ -32,10 +32,10 @@ const Menu = () => {
 
     const linksNav = [
         { to: "/admin", icon: <LuLayoutDashboard size={20} />, label: "Dashboard" },
-        { to: "/admin/quartos", icon: <LuBed size={20} />, label: "Quartos" },
-        { to: "/admin/clientes", icon: <LuUsers size={20} />, label: "Clientes" },
         { to: "/admin/reservas", icon: <LuCalendarDays size={20} />, label: "Reservas" },
+        { to: "/admin/clientes", icon: <LuUsers size={20} />, label: "Clientes" },
         { to: "/admin/pagamentos", icon: <LuCreditCard size={20} />, label: "Pagamentos" },
+        { to: "/admin/quartos", icon: <LuBed size={20} />, label: "Quartos" },
         { to: "/admin/funcionarios", icon: <LuUserCog size={20} />, label: "Funcionários" },
         { to: "/admin/cargos", icon: <LuUserCog size={20} />, label: "Cargos" },
     ];
@@ -51,9 +51,7 @@ const Menu = () => {
 
     return (
         <>
-            {/* ========================================== */}
-            {/* 1. MENU LATERAL (PC) - Esconde no celular  */}
-            {/* ========================================== */}
+            {/* Menu Lateral (PC) - Esconde no celular  */}
             <aside className={`hidden md:flex flex-col bg-[#0b4263] text-white transition-all duration-300 relative h-screen ${isOpen ? 'w-64' : 'w-20'} z-40`}>
                 <div>
                     {/* header do menu */}
@@ -80,7 +78,7 @@ const Menu = () => {
                         </div>
                     )}
                 </div>
-                
+
                 {/* area de navegaçao */}
                 <nav className="flex-1 px-4 py-6 flex flex-col gap-2 overflow-y-auto overflow-x-hidden">
                     {linksNav.map((link) => (
@@ -100,10 +98,13 @@ const Menu = () => {
                         </NavLink>
                     ))}
                 </nav>
-                
+
                 {/* area de perfil logado */}
                 <div className="p-4 border-t border-white/10 flex items-center justify-between relative">
-                    <div className="flex items-center gap-3 overflow-hidden">
+                    <button 
+                        onClick={() => navigate("/admin/perfil")}
+                        className="flex items-center gap-3 overflow-hidden hover:bg-white/5 rounded-lg p-2 -m-2 transition-colors cursor-pointer flex-1"
+                    >
                         <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center font-bold text-sm flex-shrink-0">
                             {usuarioLogado.avatar ? (
                                 <img src={usuarioLogado.avatar} alt="Perfil" className="w-full h-full rounded-full object-cover" />
@@ -113,12 +114,12 @@ const Menu = () => {
                         </div>
 
                         {isOpen && (
-                            <div className="flex flex-col whitespace-nowrap">
+                            <div className="flex flex-col whitespace-nowrap text-left">
                                 <span className="font-medium text-sm">{usuarioLogado.nome}</span>
                                 <span className="text-xs text-white/70">{usuarioLogado.cargo}</span>
                             </div>
                         )}
-                    </div>
+                    </button>
 
                     {isOpen && (
                         <div className="relative group flex items-center">
@@ -137,9 +138,8 @@ const Menu = () => {
                 </div>
             </aside>
 
-            {/* ========================================== */}
-            {/* 2. MENU INFERIOR (Mobile) - Esconde no PC  */}
-            {/* ========================================== */}
+
+            {/* Menu inferior (Mobile) - Esconde no PC  */}
             <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex items-center pb-safe pt-2 px-2 z-40 shadow-[0_-4px_10px_-1px_rgba(0,0,0,0.1)] h-[72px] overflow-x-auto gap-2">
                 {linksNav.map((link) => (
                     <NavLink
@@ -151,14 +151,13 @@ const Menu = () => {
                             ${isActive ? "text-[#F59F0A]" : "text-gray-400 hover:text-[#0b4263]"}
                         `}
                     >
-                        {/* Como os ícones do react-icons herdam a cor da fonte (currentColor), eles vão mudar de cor sozinhos! */}
                         <span>{link.icon}</span>
                         <span className="text-[10px] font-medium tracking-tight truncate w-full text-center">
                             {link.label}
                         </span>
                     </NavLink>
                 ))}
-                
+
                 {/* Divisor vertical suave */}
                 <div className="w-[1px] h-8 bg-gray-200 mx-1 shrink-0"></div>
 
@@ -173,10 +172,7 @@ const Menu = () => {
                     </span>
                 </button>
             </nav>
-
-            {/* ========================================== */}
-            {/* 3. MODAL DE SAÍDA (Mantido Igual)          */}
-            {/* ========================================== */}
+            {/*Modal da saída  */}
             {isModalOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm transition-opacity">
                     <div className="bg-white rounded-2xl p-6 w-full max-w-sm shadow-2xl transform transition-all flex flex-col items-center text-center mx-4">
