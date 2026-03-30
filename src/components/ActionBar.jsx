@@ -88,7 +88,7 @@ export default function ActionBar({
         )}
       </div>
 
-      {/* 👇 A MÁGICA AQUI: O botão só é renderizado se 'textoBotao' existir */}
+      {/*O botão só é renderizado se 'textoBotao' existir */}
       {textoBotao && (
         <button 
           onClick={onAdicionar}
