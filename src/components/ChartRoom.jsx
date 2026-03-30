@@ -24,7 +24,7 @@ const ChartRoom = () => {
   };
 
   return (
-    <Card
+    <Card 
       titulo="Distribuição de Quartos"
     >
       <div className='relative border'>

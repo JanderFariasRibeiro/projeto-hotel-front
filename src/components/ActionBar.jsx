@@ -53,7 +53,7 @@ export default function ActionBar({
 
             {/* (Radio Buttons) */}
             {mostrarFiltro && (
-              <div className="absolute left-0 mt-2 w-56 bg-white border border-gray-100 rounded-xl shadow-xl p-2 z-50">
+              <div className="absolute  right-1 mt-2 w-56 bg-white border border-gray-100 rounded-xl shadow-xl p-2 z-50">
                 
                 {/* Opção "Todos" */}
                 <label className="flex items-center gap-3 p-2.5 hover:bg-gray-50 rounded-lg cursor-pointer transition-colors">
