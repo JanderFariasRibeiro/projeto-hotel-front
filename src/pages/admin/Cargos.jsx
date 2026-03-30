@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiAlertTriangle, FiBriefcase, FiMail, FiPhone } from "react-icons/fi";
 import { AiOutlineCloudUpload, AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import ActionBar from "../../components/ActionBar";
@@ -20,6 +20,16 @@ export default function Cargos() {
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
     const [funcionarioParaDeletar, setFuncionarioParaDeletar] = useState(null);
     const navigate = useNavigate();
+
+    async function buscarCargos(){
+        const response = await AXIOS.get("/cargos",{
+            headers: {
+                Authorization: `Bearer ${sessionStorage.getItem("token")}`
+            }
+        });
+        setCargos(response.data);
+    }
+
 
 
     const atualizarLista = (novaLista) => {
@@ -102,6 +112,10 @@ export default function Cargos() {
         f.email.toLowerCase().includes(busca.toLowerCase())
     );
 
+    useEffect(() => {
+        buscarCargos();
+    }, [])
+
     return (
         <div className="w-full relative">
 
@@ -130,19 +144,6 @@ export default function Cargos() {
                                         <FiBriefcase size={13} className="text-gray-400 shrink-0" />
                                         <span className="text-sm text-gray-500 truncate">{funcionario.cargo}</span>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div className="border-t border-gray-100" />
-
-                            <div className="flex flex-col gap-2.5 text-sm text-gray-600">
-                                <div className="flex items-center gap-2.5 truncate">
-                                    <FiMail size={15} className="text-gray-400 shrink-0" />
-                                    <span className="truncate">{funcionario.email}</span>
-                                </div>
-                                <div className="flex items-center gap-2.5 truncate">
-                                    <FiPhone size={15} className="text-gray-400 shrink-0" />
-                                    <span className="truncate">{funcionario.telefone}</span>
                                 </div>
                             </div>
                         </div>

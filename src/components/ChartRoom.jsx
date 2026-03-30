@@ -27,9 +27,9 @@ const ChartRoom = () => {
     <Card 
       titulo="Distribuição de Quartos"
     >
-      <div className='relative border'>
+      <div className='relative'>
         <Doughnut data={data} />
-        <div className='w-25 h-25 flex flex-col justify-center items-center border absolute text-center bottom-15 z-10 left-1/2 -translate-x-1/2'>
+        <div className='w-25 h-25 flex flex-col justify-center items-center absolute text-center bottom-15 z-10 left-1/2 -translate-x-1/2'>
           <h2>10</h2>
           <h6>Total</h6>
         </div>

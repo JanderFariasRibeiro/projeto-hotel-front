@@ -14,6 +14,7 @@ import {
 } from "react-icons/lu";
 import { FiAlertTriangle } from "react-icons/fi";
 
+
 const Menu = () => {
     const [isOpen, setIsOpen] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -51,6 +52,7 @@ const Menu = () => {
 
     return (
         <>
+            
             {/* Menu Lateral (PC) - Esconde no celular  */}
             <aside className={`hidden md:flex flex-col bg-[#0b4263] text-white transition-all duration-300 relative h-screen ${isOpen ? 'w-64' : 'w-20'} z-40`}>
                 <div>
@@ -80,7 +82,7 @@ const Menu = () => {
                 </div>
 
                 {/* area de navegaçao */}
-                <nav className="flex-1 px-4 py-6 flex flex-col gap-2 overflow-y-auto overflow-x-hidden">
+                <nav className="menu flex-1 px-4 py-6 flex flex-col gap-2 overflow-y-auto overflow-x-hidden ">
                     {linksNav.map((link) => (
                         <NavLink
                             key={link.to}
